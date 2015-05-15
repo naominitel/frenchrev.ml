@@ -183,7 +183,7 @@ let bissextile year =
 (* number of day from the beginning of the year (Gregorian) *)
 let day = date.tm_yday
 
-(* number of day from the beginnign of the year (Republican) *)
+(* number of day from the beginning of the year (Republican) *)
 let day = (if bissextile date.tm_year then 100 else 101) + day
 
 (* number of year *)
