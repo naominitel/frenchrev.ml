@@ -180,20 +180,20 @@ let bissextile year =
     year mod 100 != 0 ||
     year mod 400 == 0
 
-(* number of day from the beginning of the year (Gregorian) *)
+(* number of days from the beginning of the year (Gregorian) *)
 let day = date.tm_yday
 
-(* number of day from the beginnign of the year (Republican) *)
+(* number of days from the beginning of the year (Republican) *)
 let day = (if bissextile date.tm_year then 100 else 101) + day
 
-(* number of year *)
+(* number of years *)
 let year = 1900 + date.tm_year - 1792
 
-(* adjust number of day and year in the case we overflow on the next year *)
+(* adjust number of days and years in the case we overflow on the next year *)
 let len = if bissextile (date.tm_year + 1) then 366 else 365
 let (day, year) = if day >= len then (day - len, year + 1) else (day, year)
 
-(* number of month and day since beginning of the month *)
+(* number of months and days since beginning of the month *)
 let month = day / 30 and day = day mod 30
 
 (*
